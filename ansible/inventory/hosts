@@ -1,0 +1,2 @@
+[homeserver]
+homeserver.local.harissaeed.com ansible_host=100.68.129.77 ansible_ssh_user=pi ansible_port=33 become=true become_user=root
