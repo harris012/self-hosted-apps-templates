@@ -1,0 +1,15 @@
+  esphome:
+    container_name: esphome
+    network_mode: host
+    restart: unless-stopped
+    user: 0:0
+    environment:
+      - HOME = "/"
+    image: esphome/esphome-armv7
+    ports:
+      - 6052:6052
+      - 6053:6053
+      - 6123:6123
+    volumes:
+      - ./volumes/esphome:/config:rw
+    command: config/ dashboar
