@@ -1,6 +1,6 @@
 ---
 - name: Playbook to Update cache, upgrade packages and reboot os if necessary
-  hosts: homeserver
+  hosts: all
   become: yes
   gather_facts: False
   tasks:
