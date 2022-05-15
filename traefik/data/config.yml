@@ -10,6 +10,12 @@
         - addprefix-pihole
       tls: {}
       service: pihole
+    grafana:
+      entryPoints:
+        - "https"
+      rule: "Host(`stats.example.com`)"
+      middlewares:
+        - default-headers
     vscode:
       entryPoints:
         - "https"
@@ -36,6 +42,10 @@
         servers:
           - url: "http://100.68.129.77:8008"
         passHostHeader: true
+    grafana:
+      loadBalancer:
+        servers:
+          - url: "http://100.68.129.77:3000"
     vscode:
       loadBalancer:
         servers:
