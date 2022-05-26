@@ -8,4 +8,6 @@
  - [x] Implement Ansible Playbook to check server updates.
  - [ ] Use Ansible playbook to deploy, update or start the stopped containers.
  - [ ] Homeserver backup solution (NFS or softrware RAID etc.)
+ - [ ] Implement Gitlab Pieline.
+ - [ ] Automate (pihole domains update)
  - [ ] Fireflyiii implementation with traefik.

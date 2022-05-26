@@ -16,6 +16,7 @@
       rule: "Host(`stats.example.com`)"
       middlewares:
         - default-headers
+      tls: {}
     vscode:
       entryPoints:
         - "https"
@@ -46,6 +47,7 @@
       loadBalancer:
         servers:
           - url: "http://100.68.129.77:3000"
+        passHostHeader: true
     vscode:
       loadBalancer:
         servers:
