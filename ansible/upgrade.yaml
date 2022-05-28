@@ -2,18 +2,40 @@
 - name: Playbook to Update cache, upgrade packages and reboot os if necessary
   hosts: all
   become: yes
+  become_method: sudo
   gather_facts: False
   tasks:
+    - name: Update pihole blocklists
+      community.docker.docker_container_exec:
+        container: pihole
+        command: bin/bash -c "pihole -g && exit"
+      register: result
+    - debug:
+        var: result.stdout_lines
+
     - name: Update apt repo and cache on servers
       apt:
         update_cache: yes
         force_apt_get: yes
         cache_valid_time: 3600
+      register: result
+    - debug:
+        var: result.stdout_lines
 
     - name: Upgrade all packages on servers
       apt:
         upgrade: dist
         force_apt_get: yes
+      register: result
+    - debug:
+        var: result.stdout_lines
+
+    - name: Autoremove unused packages
+      command: apt-get -y autoremove
+      register: autoremove_output
+      changed_when: "'The following packages will be REMOVED' in autoremove_output.stdout"
+    - debug:
+        var: autoremove_output.stdout_lines
 
     - name: Check if a reboot is needed on all servers
       register: reboot_required_file
