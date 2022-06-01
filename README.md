@@ -9,5 +9,5 @@
  - [ ] Use Ansible playbook to deploy, update or start the stopped containers.
  - [ ] Homeserver backup solution (NFS or softrware RAID etc.)
  - [ ] Implement Gitlab Pieline.
- - [ ] Automate (pihole domains update)
+ - [x] Automate (pihole domains update with ansible playbook) 
  - [ ] Fireflyiii implementation with traefik.
