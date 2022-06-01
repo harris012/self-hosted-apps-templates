@@ -6,6 +6,7 @@
  # TODOS
 
  - [x] Implement Ansible Playbook to check server updates.
+ - [ ] Setup authelia for extra layer of protection.
  - [ ] Use Ansible playbook to deploy, update or start the stopped containers.
  - [ ] Homeserver backup solution (NFS or softrware RAID etc.)
  - [ ] Implement Gitlab Pieline.
