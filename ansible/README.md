@@ -10,7 +10,7 @@ homeserver.local.harissaeed.com ansible_host=100.68.129.77 ansible_ssh_user=pi a
 ```
 More hosts can also be added.
 
-Start provisioning of the cluster using the following command:
+Start provisioning of the server using the following command:
 
 ```bash
 ansible-playbook -i inventory/hosts upgrade.yaml
