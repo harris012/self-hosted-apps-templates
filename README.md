@@ -12,3 +12,4 @@
  - [ ] Implement Gitlab Pieline.
  - [x] Automate (pihole domains update with ansible playbook) 
  - [ ] Fireflyiii implementation with traefik.
+ - [ ] Implement proxy and tor and dns requests over tor
