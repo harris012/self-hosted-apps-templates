@@ -13,4 +13,4 @@
  - [x] Automate (pihole domains update with ansible playbook) 
  - [ ] Fireflyiii implementation with traefik.
  - [ ] Implement proxy and tor and dns requests over 
- - [ ] Found out the solution about codeserver not running with treafik
+ - [x] Found out the solution about codeserver not running with treafik
