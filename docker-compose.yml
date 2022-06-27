@@ -2,56 +2,6 @@ version: '3.6'
 
 services:
 
-    # duplicati:
-    #   image: ghcr.io/linuxserver/duplicati
-    #   container_name: duplicati
-    #   hostname: HomePi
-    #   ports:
-    #     - "8200:8200"
-    #   restart: unless-stopped
-    #   environment:
-    #     - PUID=1000
-    #     - PGID=1000
-    #     - TZ=Europe/Berlin
-    #     # - CLI_ARGS= #optional
-    #   volumes:
-    #     - ./volumes/duplicati/appdata/config:/config
-    #     - ./volumes/duplicati/backups:/backups
-    #     - ./volumes/duplicati/source:/source
-
-    # grafana:
-    #   container_name: grafana
-    #   image: grafana/grafana:latest
-    #   restart: unless-stopped
-    #   user: "0"
-    #   ports:
-    #     - "3000:3000"
-    #   volumes:
-    #     - ./volumes/grafana/data:/var/lib/grafana
-    #     - ./volumes/grafana/log:/var/log/grafana
-    #     - ./volumes/grafana/provisioning:/etc/grafana/provisioning
-    #   environment:
-    #     - GF_PATHS_DATA=/var/lib/grafana
-    #     - GF_PATHS_LOGS=/var/log/grafana
-    #   # Uncomment this if no open access is wanted
-    #     # - GF_AUTH_ANONYMOUS_ENABLED=true
-    #     # - GF_AUTH_ANONYMOUS_ORG_NAME=org
-    #     # - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-    #     # - GF_SECURITY_ALLOW_EMBEDDING=true
-    #   depends_on:
-    #     - influxdb
-    #   logging:
-    #     options:
-    #       max-size: "5m"
-    #       max-file: "3"
-  
-      
-    # Dieses Netzwerk wird benoetigt- Add this Network if not existing
-
-  # networks:
-  #   nextcloud:
-  #     driver: bridge
-  #     internal: true
 
     # Aendere die Passwoerter - change the passwords (P4ssw0rt1 & P4ssw0rt2)
     nextcloud:
