@@ -291,7 +291,9 @@ services:
       # Always use semver tags, avoid using tag latest!
       image: ghcr.io/tprasadtp/protonvpn:latest
       restart: unless-stopped
-      network_mode: "service:tailscale"
+      #network_mode: "proxy"
+      networks:
+        - proxy
       cap_add:
         - NET_ADMIN
       devices:
@@ -299,6 +301,8 @@ services:
       # # Expose example container's port here!
       # expose:
       #     - 8000
+      ports:
+        - 8000:5000
       logging:
          options:
            max-size: "5m"
