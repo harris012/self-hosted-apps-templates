@@ -2,8 +2,6 @@ version: '3.6'
 
 services:
 
-
-    # Aendere die Passwoerter - change the passwords (P4ssw0rt1 & P4ssw0rt2)
     nextcloud:
       image: nextcloud
       container_name: nextcloud
@@ -146,13 +144,7 @@ services:
         - TZ=Europe/Berlin
       volumes:
         - ./volumes/vscode/config:/config
-        - /home/pi/ei23-docker:/ei23-docker
-    #  networks:
-    #    - proxy
-    #  labels:
-    #    - "traefik.http.routers.vscode-router.rule=Host(`vscode.example.com`)"
-    #    - "traefik.http.services.vscode-service.loadbalancer.server.port=2222"
-    #    - "traefik.docker.network=traefik-network"      
+        - /home/pi/ei23-docker:/ei23-docker     
     pihole:
       container_name: pihole
       image: cbcrowe/pihole-unbound:latest
@@ -287,16 +279,38 @@ services:
             max-size: "5m"
             max-file: "3"
 
+    protonvpn:
+      container_name: protonvpn
+      environment:
+        # Credentials
+        PROTONVPN_USERNAME: MUtvcbqtv-HnK2JEl5ksf8ow
+        PROTONVPN_PASSWORD: oW2wEyB0LlaVa0fw/iiZa/AY
+        # Override these where applicable
+        PROTONVPN_SERVER: NL
+        PROTONVPN_TIER: 0
+      # Always use semver tags, avoid using tag latest!
+      image: ghcr.io/tprasadtp/protonvpn:latest
+      restart: unless-stopped
+      network_mode: "service:tailscale"
+      cap_add:
+        - NET_ADMIN
+      devices:
+        - /dev/net/tun:/dev/net/tun
+      # # Expose example container's port here!
+      # expose:
+      #     - 8000
+      logging:
+         options:
+           max-size: "5m"
+           max-file: "3"
+
     whoogle:
-      # labels:
-      #   - "traefik.enable=true"
-      #   - "traefik.http.routers.whoogle.rule=Host(`whoogle.local.harissaeed.com`)"
-      #   - "traefik.http.routers.whoogle.entrypoints=https"
-      #   - "traefik.http.routers.whoogle.tls.certresolver=cloudflare"
-      #   - "traefik.http.services.whoogle.loadbalancer.server.port=5000"
-      image: ${WHOOGLE_IMAGE:-benbusby/whoogle-search}
+      image: benbusby/whoogle-search:latest
       container_name: whoogle
       restart: unless-stopped
+      network_mode: "service:protonvpn"
+      depends_on:
+        - protonvpn
       #pids_limit: 50
       #mem_limit: 256mb
       #memswap_limit: 256mb
@@ -312,8 +326,10 @@ services:
         - /run/tor/:size=1M,uid=927,gid=927,mode=1700
       env_file: # Alternatively, load variables from whoogle.env
         - whoogle.env
-      ports:
-        - 8000:5000
+      # ports:
+      #   - 8000:5000
+      # expose:
+      #     - 8000
       logging:
         options:
           max-size: "5m"
