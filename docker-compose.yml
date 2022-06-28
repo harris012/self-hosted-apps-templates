@@ -297,6 +297,10 @@ services:
         - OPENVPN_PASSWORD=<yout_password>       # edit me
         - SERVER_COUNTRIES=<moon>               # edit me
         - FREE_ONLY=<why_not?>                 # edit me
+        - BLOCK_SURVEILLANCE=on
+        - BLOCK_ADS=on
+        - TZ=${TZ}
+        - UPDATER_PERIOD=1h
       logging:
         options:
           max-size: "5m"
