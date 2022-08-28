@@ -34,8 +34,10 @@ services:
       restart: unless-stopped
       depends_on: 
         - nextcloud_db
+        - redis
       links:
         - nextcloud_db
+        - redis
       networks:
         - proxy
         - default
@@ -44,16 +46,17 @@ services:
         - MYSQL_PASSWORD=Your_PASSWORD
         - MYSQL_DATABASE=user
         - MYSQL_USER=user
-        - TRUSTED_PROXIES=172.18.0.0/16
+        - TRUSTED_PROXIES=172.20.0.0/16
         - OVERWRITEPROTOCOL=https
-        # - OVERWRITEHOST=hhhh.com
+        - OVERWRITEHOST=nextcloud.local.harissaeed.com
+        - REDIS_HOST=redis
       logging:
         options:
           max-size: "5m"
           max-file: "3"
       
     nextcloud_db:
-      image: yobasystems/alpine-mariadb:10.5.11
+      image: yobasystems/alpine-mariadb:10.6.8
       container_name: nextcloud_db
       volumes:
         - ./volumes/nextcloud/db:/var/lib/mysql
@@ -68,7 +71,20 @@ services:
       logging:
         options:
           max-size: "5m"
-          max-file: "3"       
+          max-file: "3"
+
+    redis:
+      container_name: redis
+      image: redis:latest
+      networks:
+        - proxy
+      restart: unless-stopped
+      volumes:
+        - ./volumes/redis:/var/lib/redis
+      logging:
+        options:
+          max-size: "5m"
+          max-file: "3"
               
     
 
