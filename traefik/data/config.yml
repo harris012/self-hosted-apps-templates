@@ -34,14 +34,6 @@
         - default-headers
       tls: {}
       service: vscode
-    whoogle:
-      entryPoints:
-        - "https"
-      rule: "Host(`whoogle.local.harissaeed.com`)"
-      middlewares:
-        - default-headers
-      tls: {}
-      service: whoogle
 
  #endregion
  #region services
@@ -66,11 +58,7 @@
         servers:
           - url: "http://192.168.0.104:2222"
         passHostHeader: true
-    whoogle:
-      loadBalancer:
-        servers:
-          - url: "http://100.68.129.77:5000"
-        passHostHeader: true  
+
 #endregion
   middlewares:
     addprefix-pihole:
