@@ -119,7 +119,13 @@ services:
         - proxy
       environment:
         # After you setted up your user(s)
-        - "SIGNUPS_ALLOWED=false"
+        - SIGNUPS_ALLOWED=false
+        - INVITATIONS_ALLOWED=false
+        - SIGNUPS_VERIFY=true
+        - SHOW_PASSWORD_HINT=false
+        - PUID=1000
+        - GUID=1000
+        - ROCKET_PORT=8085
       labels:
         - traefik.enable=true
         - traefik.docker.network=proxy
@@ -135,7 +141,7 @@ services:
         - traefik.http.routers.bitwarden-ui-http.entrypoints=http
         - traefik.http.routers.bitwarden-ui-http.middlewares=redirect-https
         - traefik.http.routers.bitwarden-ui-http.service=bitwarden-ui
-        - traefik.http.services.bitwarden-ui.loadbalancer.server.port=80
+        - traefik.http.services.bitwarden-ui.loadbalancer.server.port=8085
         - traefik.http.routers.bitwarden-websocket-https.rule=Host(`bitwarden.example.com`) && Path(`/notifications/hub`)
         - traefik.http.routers.bitwarden-websocket-https.entrypoints=https
         - traefik.http.routers.bitwarden-websocket-https.tls=true
@@ -145,9 +151,12 @@ services:
         - traefik.http.routers.bitwarden-websocket-http.middlewares=redirect-https
         - traefik.http.routers.bitwarden-websocket-http.service=bitwarden-websocket
         - traefik.http.services.bitwarden-websocket.loadbalancer.server.port=3012
-
       volumes:
         - ./volumes/bitwarden/data:/data
+      logging:
+        options:
+          max-size: "5m"
+          max-file: "3"
     vscode:
       image: ghcr.io/linuxserver/code-server
       container_name: vscode
