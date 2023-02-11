@@ -2,8 +2,17 @@
 
 - Directory `./self-hosted-apps/compose_templates` contains the docker-compose templates for usage. All of them are open source and can be self-hosted on a cheap single board computer like Raspberry pi.
 
+## List of apps
 
- # TODOS
+<p align="left"> 
+  <a href="https://pi-hole.net/" target="_blank"> <img src="https://raw.githubusercontent.com/pi-hole/docs/master/docs/images/logo.svg" alt="python" width="80" height="80"/> </a> 
+  <a href="https://nextcloud.com/" target="_blank"> <img src="https://raw.githubusercontent.com/nextcloud/nextcloud.com/master/assets/img/logo/logo_nextcloud_blue.svg" alt="ansible" width="80" height="80"/> </a> 
+  <a href="https://www.portainer.io/" target="_blank"> <img src="https://raw.githubusercontent.com/portainer/portainer/develop/app/assets/ico/favicon.ico" alt="docker" width="80" height="80"/> </a> 
+</p>
+
+more coming soon....
+
+ ## TODOS
 
  - [x] Implement dynamic traefik configuarion for all services like (nextcloud & bitwarden).
  - [x] Implement Ansible Playbook to check server updates.
